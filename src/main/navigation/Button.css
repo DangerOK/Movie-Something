@@ -1,0 +1,18 @@
+.search-button {
+  display: flex;
+  justify-content: center;
+}
+.search-button button {
+  padding: 10px 21px;
+  background: #119;
+  color: #eee;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s ease-out;
+  outline: 0;
+  border: 0;
+}
+
+.search-button button:hover {
+  color: white;
+}
