@@ -15,7 +15,7 @@ function Header() {
   return(
 
     <header>
-      <Link to='/'>
+      <Link to='/Movie-Something'>
         <h1>Movie-Something</h1>
       </Link>
     </header>

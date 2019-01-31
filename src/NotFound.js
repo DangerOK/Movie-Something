@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 const NotFound = () => (
   <div>
     <h3>This Page Does Not Exist</h3>
-    <Link to='/'>Return To Browse Movies </Link>
+    <Link to='/Movie-Something'>Return To Browse Movies </Link>
   </div>
 );
 
