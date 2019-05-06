@@ -1,7 +1,5 @@
-// Main.js
-
 import React from "react";
-import "./Main.css"
+import "./Main.css";
 import Navigation from "./navigation/Navigation";
 import Movies from "./movies/Movies";
 
@@ -35,9 +33,9 @@ class Main extends React.Component {
       step: 15,
       value: { min: 60, max: 120 }
     }
-  }
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     this.fetchMovies(this.state.moviesUrl);
   }
 
@@ -52,11 +50,11 @@ class Main extends React.Component {
 
   onGenreChange = event => {
     this.setState({ genre: event.target.value });
-  }
+  };
 
   setGenres = genres => {
-    this.setState({genres});
-  }
+    this.setState({ genres });
+  };
 
   onChange = data => {
     this.setState({
@@ -68,11 +66,12 @@ class Main extends React.Component {
   };
 
   generateUrl = () => {
-    const {genres, year, rating, runtime, page } = this.state;
-    const selectedGenre = genres.find( genre => genre.name === this.state.genre);
+    const { genres, year, rating, runtime, page } = this.state;
+    const selectedGenre = genres.find(genre => genre.name === this.state.genre);
     const genreId = selectedGenre.id;
 
-    const moviesUrl = `https://api.themoviedb.org/3/discover/movie?` +
+    const moviesUrl =
+      `https://api.themoviedb.org/3/discover/movie?` +
       `api_key=651925d45022d1ae658063b443c99784&` +
       `language=en-US&sort_by=popularity.desc&` +
       `with_genres=${genreId}&` +
@@ -85,19 +84,19 @@ class Main extends React.Component {
       `page=${page}`;
 
     this.setState({ moviesUrl });
-  }
+  };
 
   onSearchButtonClick = () => {
-    this.setState({page: 1});
+    this.setState({ page: 1 });
     this.generateUrl();
-  }
+  };
 
-  fetchMovies = (url) => {
+  fetchMovies = url => {
     fetch(url)
       .then(response => response.json())
       .then(data => this.storeMovies(data))
       .catch(error => console.log(error));
-  }
+  };
 
   storeMovies = data => {
     const movies = data.results.map(result => {
@@ -110,25 +109,33 @@ class Main extends React.Component {
         vote_average,
         release_date
       } = result;
-      return { vote_count, id, genre_ids, poster_path, title, vote_average, release_date };
+      return {
+        vote_count,
+        id,
+        genre_ids,
+        poster_path,
+        title,
+        vote_average,
+        release_date
+      };
     });
     this.setState({ movies, total_pages: data.total_pages });
   };
 
   onPageIncrease = () => {
-    const { page, total_pages } = this.state
+    const { page, total_pages } = this.state;
     const nextPage = page + 1;
     if (nextPage <= total_pages) {
-      this.setState({ page: nextPage })
+      this.setState({ page: nextPage });
     }
-  }
+  };
 
   onPageDecrease = () => {
     const nextPage = this.state.page - 1;
-    if ( nextPage > 0 ) {
-      this.setState({ page: nextPage })
+    if (nextPage > 0) {
+      this.setState({ page: nextPage });
     }
-  }
+  };
 
   render() {
     return (
@@ -138,7 +145,8 @@ class Main extends React.Component {
           onGenreChange={this.onGenreChange}
           setGenres={this.setGenres}
           onSearchButtonClick={this.onSearchButtonClick}
-          {...this.state} />
+          {...this.state}
+        />
         <Movies
           movies={this.state.movies}
           page={this.state.page}
@@ -146,7 +154,7 @@ class Main extends React.Component {
           onPageDecrease={this.onPageDecrease}
         />
       </section>
-    )
+    );
   }
 }
 

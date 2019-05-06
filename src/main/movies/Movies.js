@@ -5,15 +5,10 @@ import "./Movies.css";
 import MovieListItem from "./MovieListItem";
 import Button from "../navigation/Button";
 
-const Movies = ({
-  movies,
-  page,
-  onPageIncrease,
-  onPageDecrease
-}) => (
+const Movies = ({ movies, page, onPageIncrease, onPageDecrease }) => (
   <section>
     <ul className="movies">
-      {movies.map( movie => (
+      {movies.map(movie => (
         <MovieListItem key={movie.id} movie={movie} />
       ))}
     </ul>
@@ -23,7 +18,6 @@ const Movies = ({
       <Button onClick={onPageIncrease}>Next</Button>
     </div>
   </section>
-)
-
+);
 
 export default Movies;

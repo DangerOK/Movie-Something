@@ -1,10 +1,8 @@
-// Navigation.js
-
 import React from "react";
 import "./Navigation.css";
 import Selection from "./Selection";
-import Slider from './Slider';
-import Button from './Button'
+import Slider from "./Slider";
+import Button from "./Button";
 
 class Navigation extends React.Component {
   componentDidMount() {
@@ -15,7 +13,16 @@ class Navigation extends React.Component {
   }
 
   render() {
-    const { genre, genres, onGenreChange, onChange, year, rating, runtime, onSearchButtonClick } = this.props;
+    const {
+      genre,
+      genres,
+      onGenreChange,
+      onChange,
+      year,
+      rating,
+      runtime,
+      onSearchButtonClick
+    } = this.props;
     return (
       <section className="navigation">
         <Selection
@@ -28,12 +35,9 @@ class Navigation extends React.Component {
         <Slider data={rating} onChange={onChange} />
         <Slider data={runtime} onChange={onChange} />
 
-        <Button onClick={onSearchButtonClick}>
-          Search
-        </Button>
-
+        <Button onClick={onSearchButtonClick}>Search</Button>
       </section>
-    )
+    );
   }
 }
 
